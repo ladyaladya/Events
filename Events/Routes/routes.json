@@ -1,0 +1,52 @@
+[
+  {
+    "Name": "default",
+    "Pattern": "events/",
+    "Defaults": {
+      "Controller": "Home",
+      "Action": "Events"
+    }
+  },
+  {
+    "Name": "event",
+    "Pattern": "event/{id?}/",
+    "Defaults": {
+      "Controller": "Home",
+      "Action": "Event"
+    }
+  },
+  {
+    "Name": "new-event",
+    "Pattern": "new-event/",
+    "Defaults": {
+      "Controller": "Home",
+      "Action": "NewEvent"
+    }
+  },
+  {
+    "Name": "create-event",
+    "Pattern": "create-event/",
+    "Defaults": {
+      "Controller": "Home",
+      "Action": "Create"
+    }
+  },
+  {
+    "Name": "delete-event",
+    "Pattern": "delete-event/",
+    "Defaults": {
+      "Controller": "Home",
+      "Action": "Delete"
+    }
+  },
+  {
+    "Name": "privacy",
+    "Pattern": "privacy/",
+    "Defaults": {
+      "Controller": "Home",
+      "Action": "Privacy"
+    }
+  }
+]
+
+

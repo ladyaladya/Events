@@ -1,0 +1,48 @@
+﻿@model Events.Core.Models.Event
+
+@{
+    var isNewEvent = Model == null;
+    var action = isNewEvent ? "Create" : "Event";
+    var buttonText = isNewEvent ? "Create" : "Save";
+    ViewData["Title"] = isNewEvent ? "New Event" : $"{Model?.Name}";
+}
+
+<h2 class="h2 py-3 mb-0">@action Event</h2>
+<form asp-action=@action asp-controller="Home" method="post">
+    <div class="form-group mb-2">
+        <label asp-for="Category"></label>
+        <input asp-for="Category" class="form-control" />
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="ImagePath"></label>
+        <input asp-for="ImagePath" class="form-control" />
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Place"></label>
+        <input asp-for="Place" class="form-control" />
+    </div>
+    <div class="form-group mb-2">
+        <label asp-for="Time"></label>
+        <input asp-for="Time" type="datetime-local" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="AdditionalInfo"></label>
+        <textarea asp-for="AdditionalInfo" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary ">@buttonText</button>
+</form>   
+
+
+
+
+
+
+
