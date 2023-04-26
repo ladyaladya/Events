@@ -40,9 +40,11 @@ namespace Events.UI.Providers.Concrete
             return _context.Events?.SingleOrDefault(x => x.Id == id);
         }
 
-        public IEnumerable<Event>? GetEvents()
+        public IEnumerable<Event> GetEvents()
         {
-            return _context.Events;
+            var events = _context.Events;
+            if (events == null) { return Enumerable.Empty<Event>(); }
+            else return events;
         }
 
         public bool Update(Event @event)

@@ -4,7 +4,7 @@
     "Pattern": "events/",
     "Defaults": {
       "Controller": "Home",
-      "Action": "Events"
+      "Action": "EventTable"
     }
   },
   {

@@ -1,6 +1,7 @@
 ﻿using Events.Core.Models;
 using Events.Models;
 using Events.Providers.Abstract;
+using Events.UI.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -14,11 +15,12 @@ namespace Events.Controllers
             _eventProvider = eventProvider;
         }
 
-        public IActionResult Events()
+        public IActionResult EventTable()
         {
-            var events = _eventProvider.GetEvents() ?? Enumerable.Empty<Event>();
-            var eventsTable = new EventsTable(events);
-            return View("Events", eventsTable);
+            var tableFilters = Request.Query.GetEventTableFilters();
+            var events = _eventProvider.GetEvents();
+            var eventsTable = new EventTable(events, tableFilters);
+            return View("EventTable", eventsTable);
         }
 
         public IActionResult Event(int id)
@@ -40,7 +42,7 @@ namespace Events.Controllers
             if (ModelState.IsValid)
             {
                 _eventProvider.Update(updatedEvent);
-                return RedirectToAction("Events");
+                return RedirectToAction("EventTable");
             }
 
             return View(updatedEvent);
@@ -58,7 +60,7 @@ namespace Events.Controllers
             if (ModelState.IsValid)
             {
                 _eventProvider.Create(newEvent);
-                return RedirectToAction("Events");
+                return RedirectToAction("EventTable");
             }
 
             return View("Event");
@@ -82,7 +84,7 @@ namespace Events.Controllers
         {
             _eventProvider.Delete(id);
 
-            return RedirectToAction("Events");
+            return RedirectToAction("EventTable");
         }
 
         public IActionResult Privacy()
