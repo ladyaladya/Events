@@ -1,5 +1,6 @@
 ﻿@using Events.UI.Helpers
 @using System.Net
+@using Events.UI.Models;
 @using Microsoft.AspNetCore.WebUtilities
 
 @model EventTable
@@ -17,7 +18,11 @@
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>Category</th>
+                <th>
+                    <a href="@Url.ActionLink("EventTable", "Home" , new EventTableFilters() {order_by_column = EventTableColumn.category, order_by_desc = Model.TableFilters.order_by_column == EventTableColumn.category ? 1 : 0} )">
+                        <span>Category</span>
+                    </a>
+                </th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Place</th>
