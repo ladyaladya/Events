@@ -1,0 +1,49 @@
+﻿@using Events.UI.Helpers
+@using System.Net
+@using Events.UI.Models;
+@using Microsoft.AspNetCore.WebUtilities
+
+@model EventTable
+
+<strong>
+    @Model.StartIndex-@Model.EndIndex
+</strong>
+            of
+<strong>
+    @Model.AllEventsCount
+</strong>
+
+<div class="mt-2">
+    @if (Model.Events.Any())
+    {
+        <pager class="pagination pagination-sm"
+               asp-page-size="@Constants.EventsPerPage"
+               asp-page-index="@Model.PageIndex"
+               asp-total-count="@Model.AllEventsCount"
+               asp-action="EventTable"
+               asp-controller="Home">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item @(Model.PageIndex <= 1 ? "disabled" : "")">
+                        <a class="page-link" href="@Url.ActionLink("EventTable", "Home" , Model.PaginationTableFilters.PreviousPageFilter)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    @foreach (var pageIndex in Model.Pagination.PageNumbersArray)
+                    {
+                        <li class="page-item @(pageIndex == Model.PageIndex ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("EventTable", "Home", Model.PaginationTableFilters.PageNumbersFilterArray[pageIndex - 1])">@pageIndex</a>
+                        </li>
+                    }
+
+                    <li class="page-item @(Model.PageIndex >= Model.PageCount ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("EventTable", "Home", Model.PaginationTableFilters.NextPageFilter)" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </pager>
+    }
+</div>
