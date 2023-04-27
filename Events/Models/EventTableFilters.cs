@@ -1,21 +1,17 @@
-﻿namespace Events.UI.Models
+﻿using Events.UI.Helpers;
+
+namespace Events.UI.Models
 {
     public struct EventTableFilters
     {
-        public EventTableColumn order_by_column { get; set; }
-        public int page { get; set; }
-        public int order_by_desc
-        {
-            get
+        public EventTableColumn order_by_column { get; set; } = Constants.OrderByColumn;
+        public int page { get; set; } = Constants.DefaultPage;
+        public FakeBoolEnum order_by_desc { get; set; } = Constants.IsOrderedByDesc;
+        public EventTableFilters() {
+            if (page < Constants.DefaultPage)
             {
-                return _order_by_desc ? 1 : 0;
-            }
-            set
-            {
-                _order_by_desc = value > 0 ? true : false;
+                page = Constants.DefaultPage;
             }
         }
-
-        private bool _order_by_desc;
     }
 }

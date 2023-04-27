@@ -11,6 +11,7 @@ namespace Events.Models
         public EventTableFilters TableFilters { get; }
         public EventTablePagination Pagination { get; }
         public EventTablePaginationFilters PaginationTableFilters { get; }
+        public IEnumerable<EventTableFilters> ColumnTableFilters { get; }
         public int AllEventsCount { get; }
         public int StartIndex { get; }
         public int EndIndex { get; }
@@ -29,6 +30,7 @@ namespace Events.Models
             EndIndex = GetEndIndex();
             Pagination = GetPagination();
             PaginationTableFilters = GetPaginationTableFilters();
+            ColumnTableFilters = GetColumnTableFilters();
             Events = GetFilteredEvents(events);
         }
 
@@ -123,6 +125,23 @@ namespace Events.Models
                     page = pageIndex,
                     order_by_column = TableFilters.order_by_column,
                     order_by_desc = TableFilters.order_by_desc,
+                });
+            }
+
+            return tableFilters;
+        }
+
+        private IEnumerable<EventTableFilters> GetColumnTableFilters()
+        {
+            var tableFilters = new List<EventTableFilters>();
+
+            foreach (var column in Enum.GetValues<EventTableColumn>().Cast<EventTableColumn>())
+            {
+                tableFilters.Add(new EventTableFilters()
+                {
+                    order_by_column = column,
+                    order_by_desc = TableFilters.order_by_column == column ? TableFilters.order_by_desc.Toggle() : Constants.IsOrderedByDesc,
+                    page = Constants.DefaultPage,
                 });
             }
 

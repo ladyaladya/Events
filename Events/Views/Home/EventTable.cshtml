@@ -19,16 +19,45 @@
         <thead>
             <tr>
                 <th>
-                    <a href="@Url.ActionLink("EventTable", "Home" , new EventTableFilters() {order_by_column = EventTableColumn.category, order_by_desc = Model.TableFilters.order_by_column == EventTableColumn.category ? 1 : 0} )">
+                    <a href="@Url.ActionLink("EventTable", "Home" , Model.ColumnTableFilters.SingleOrDefault(x => x.order_by_column == EventTableColumn.id))">
+                        <span>Key</span>
+                    </a>
+                </th>
+                <th>
+                    <a href="@Url.ActionLink("EventTable", "Home" , Model.ColumnTableFilters.SingleOrDefault(x => x.order_by_column == EventTableColumn.category))">
                         <span>Category</span>
                     </a>
                 </th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Place</th>
-                <th>Time</th>
-                <th>Image</th>
-                <th>Additional Info</th>
+                <th>
+                    <a href="@Url.ActionLink("EventTable", "Home" , Model.ColumnTableFilters.SingleOrDefault(x => x.order_by_column == EventTableColumn.name))">
+                        <span>Name</span>
+                    </a>
+                </th>
+                <th>
+                    <a href="@Url.ActionLink("EventTable", "Home" , Model.ColumnTableFilters.SingleOrDefault(x => x.order_by_column == EventTableColumn.description))">
+                        <span>Description</span>
+                    </a>
+                </th>
+                <th>
+                    <a href="@Url.ActionLink("EventTable", "Home" , Model.ColumnTableFilters.SingleOrDefault(x => x.order_by_column == EventTableColumn.place))">
+                        <span>Place</span>
+                    </a>
+                </th>
+                <th>
+                    <a href="@Url.ActionLink("EventTable", "Home" , Model.ColumnTableFilters.SingleOrDefault(x => x.order_by_column == EventTableColumn.time))">
+                        <span>Time</span>
+                    </a>
+                </th>
+                <th>
+                    <a href="@Url.ActionLink("EventTable", "Home" , Model.ColumnTableFilters.SingleOrDefault(x => x.order_by_column == EventTableColumn.image))">
+                        <span>Image</span>
+                    </a>
+                </th>
+                <th>
+                    <a href="@Url.ActionLink("EventTable", "Home" , Model.ColumnTableFilters.SingleOrDefault(x => x.order_by_column == EventTableColumn.additional_info))">
+                        <span>Additional Info</span>
+                    </a>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +66,7 @@
                 @foreach (var e in Model.Events)
                 {
                     <tr>
+                        <td>@e.Id</td>
                         <td>@e.Category</td>
                         <td>@e.Name</td>
                         <td>@e.Description</td>

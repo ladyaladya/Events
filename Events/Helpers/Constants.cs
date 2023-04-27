@@ -7,6 +7,6 @@ namespace Events.UI.Helpers
         public const int EventsPerPage = 5;
         public const int DefaultPage = 1;
         public const EventTableColumn OrderByColumn = EventTableColumn.id;
-        public const int IsOrderedByDesc = 0;
+        public const FakeBoolEnum IsOrderedByDesc = FakeBoolEnum.n;
     }
 }

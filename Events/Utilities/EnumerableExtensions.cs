@@ -6,9 +6,9 @@ namespace Events.UI.Utilities
 {
     public static class EnumerableExtensions
     {
-        public static IEnumerable<Event> SortByColumn(this IEnumerable<Event> events, EventTableColumn column, int orderByDesc)
+        public static IEnumerable<Event> SortByColumn(this IEnumerable<Event> events, EventTableColumn column, FakeBoolEnum orderByDesc)
         {
-            bool isOrderByDesc = orderByDesc > 0;
+            bool isOrderByDesc = orderByDesc == FakeBoolEnum.y;
             switch (column)
             {
                 case EventTableColumn.id:
@@ -46,7 +46,7 @@ namespace Events.UI.Utilities
 
             var isPageValidInteger = int.TryParse(pageStr, out int page);
             var isOrderByColumnValidEnum = Enum.TryParse(orderByColumnStr, out EventTableColumn orderByColumn);
-            var isOrderByDescValidInteger = int.TryParse(orderByDescStr, out int orderByDesc);
+            var isOrderByDescValidInteger = Enum.TryParse(orderByDescStr, out FakeBoolEnum orderByDesc);
 
             var tableFilters = new EventTableFilters()
             {
