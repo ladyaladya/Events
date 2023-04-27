@@ -18,7 +18,7 @@ namespace Events.Models
         public int PageIndex { get; }
         public int PageCount { get; }
 
-        public EventTable(IEnumerable<Event> events) : this(events, GetDefaultEventTableFilters()) { }
+        public EventTable(IEnumerable<Event> events) : this(events, new EventTableFilters()) { }
 
         public EventTable(IEnumerable<Event> events, EventTableFilters filters)
         {
@@ -32,16 +32,6 @@ namespace Events.Models
             PaginationTableFilters = GetPaginationTableFilters();
             ColumnTableFilters = GetColumnTableFilters();
             Events = GetFilteredEvents(events);
-        }
-
-        private static EventTableFilters GetDefaultEventTableFilters()
-        {
-            return new EventTableFilters()
-            {
-                page = Constants.DefaultPage,
-                order_by_column = Constants.OrderByColumn,
-                order_by_desc = Constants.IsOrderedByDesc,
-            };
         }
 
         private int GetPageIndex()
