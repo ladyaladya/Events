@@ -1,8 +1,8 @@
 using Events.Core.Data.Context.Concrete;
 using Microsoft.EntityFrameworkCore;
-using Events.UI.Providers.Concrete;
-using Events.Providers.Abstract;
-using Events.UI.Providers.Abstract;
+using Events.Providers.Interfaces;
+using Events.UI.Providers.Interfaces;
+using Events.UI.Providers;
 using Events.Core.Models;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,6 +1,6 @@
 ﻿using Events.Core.Models;
 using Events.Models;
-using Events.Providers.Abstract;
+using Events.Providers.Interfaces;
 using Events.UI.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;

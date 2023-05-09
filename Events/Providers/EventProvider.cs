@@ -1,8 +1,8 @@
 ﻿using Events.Core.Data.Context.Concrete;
 using Events.Core.Models;
-using Events.Providers.Abstract;
+using Events.Providers.Interfaces;
 
-namespace Events.UI.Providers.Concrete
+namespace Events.UI.Providers
 {
     public class EventProvider : IEventProvider
     {

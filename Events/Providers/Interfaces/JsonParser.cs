@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace Events.UI.Providers.Abstract
+namespace Events.UI.Providers.Interfaces
 {
     public interface JsonParser<T>
     {

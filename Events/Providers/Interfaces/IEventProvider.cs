@@ -1,6 +1,6 @@
 ﻿using Events.Core.Models;
 
-namespace Events.Providers.Abstract
+namespace Events.Providers.Interfaces
 {
     public interface IEventProvider
     {
